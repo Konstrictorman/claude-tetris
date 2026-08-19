@@ -39,6 +39,11 @@ const overlay = document.getElementById('overlay');
 const overlayTitle = document.getElementById('overlay-title');
 const overlayScore = document.getElementById('overlay-score');
 const restartBtn = document.getElementById('restart-btn');
+const themeToggleBtn = document.getElementById('theme-toggle');
+const themeToggleIcon = themeToggleBtn.querySelector('.theme-toggle-icon');
+const themeToggleLabel = themeToggleBtn.querySelector('.theme-toggle-label');
+
+const THEME_KEY = 'tetris-theme';
 
 let board, current, next, score, lines, level, paused, gameOver, lastTime, dropAccum, dropInterval, animId;
 
@@ -169,7 +174,7 @@ function drawBlock(context, x, y, colorIndex, size, alpha) {
 }
 
 function drawGrid() {
-  ctx.strokeStyle = '#22222e';
+  ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--grid-line').trim();
   ctx.lineWidth = 0.5;
   for (let c = 1; c < COLS; c++) {
     ctx.beginPath();
@@ -300,5 +305,20 @@ document.addEventListener('keydown', e => {
 });
 
 restartBtn.addEventListener('click', init);
+
+function applyTheme(theme) {
+  document.body.classList.toggle('light', theme === 'light');
+  themeToggleBtn.setAttribute('aria-pressed', String(theme === 'light'));
+  themeToggleIcon.textContent = theme === 'light' ? '☀️' : '🌙';
+  themeToggleLabel.textContent = theme === 'light' ? 'Light' : 'Dark';
+  localStorage.setItem(THEME_KEY, theme);
+}
+
+themeToggleBtn.addEventListener('click', () => {
+  const isLight = document.body.classList.contains('light');
+  applyTheme(isLight ? 'dark' : 'light');
+});
+
+applyTheme(localStorage.getItem(THEME_KEY) || 'dark');
 
 init();
