@@ -34,7 +34,7 @@ Escribe un comentario breve y técnico, en el mismo idioma en que está escrito 
 - **Enfoque sugerido**: una dirección concreta y breve para la solución (no es una implementación completa — esto es un diagnóstico, no un PR).
 - Si es una pregunta o el reporte es ambiguo, pide el detalle que falta (pasos para reproducir, navegador, captura de pantalla) en vez de inventar un diagnóstico.
 
-Manten el comentario enfocado y fácil de escanear (un par de párrafos cortos o una lista breve, no un ensayo).
+Manten el comentario enfocado y fácil de escanear (un par de párrafos cortos o una lista breve, no un ensayo). El texto debe estar en formato Markdown válido que `gh` pueda renderizar correctamente (Markdown estándar de GitHub — sin HTML crudo).
 
 Publícalo así:
 

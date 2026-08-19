@@ -25,6 +25,9 @@ jobs:
           claude_code_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
           # Issues can be opened by anyone, not just collaborators with write access.
           allowed_non_write_users: "*"
-          prompt: "/triage-issue REPO: ${{ github.repository }} ISSUE_NUMBER: ${{ github.event.issue.number }}"
+          prompt: |
+            /triage-issue REPO: ${{ github.repository }} ISSUE_NUMBER: ${{ github.event.issue.number }}
+
+            Note: any comment you post must be written in Markdown format that `gh` can render correctly (standard GitHub-flavored Markdown, no raw HTML).
           # See https://github.com/anthropics/claude-code-action/blob/main/docs/usage.md
           # or https://code.claude.com/docs/en/cli-reference for available options
